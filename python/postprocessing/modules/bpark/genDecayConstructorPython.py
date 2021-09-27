@@ -34,11 +34,12 @@ class genDecayConstructorPython(Module):
         pass
 
     def beginJob(self):
-        
+        print self.interDecay 
         for dpdgId in self.daughtersPdgId:
           momChain = 0
+          print "daughter",dpdgId
           for decay in self.interDecay:
-             print decay
+             print "decay",decay
              decay = decay.split("->")
              mom = int( decay[0] ) 
              daughters = map(int,decay[1].split(","))
@@ -46,7 +47,7 @@ class genDecayConstructorPython(Module):
                if int(daughter) != dpdgId: continue
                momChain = int(mom)
           self.interMom.append(momChain)
-        print self.interMom
+        print "moms",self.interMom
         pass
 
     def endJob(self):
