@@ -169,7 +169,11 @@ class genDecayConstructorPython(Module):
       signFactor = getattr(realB,"pdgId") / self.momPdgId
 
       for part in finalStateParts:
-        bridx = self.daughtersPdgId.index(signFactor*getattr(part,"pdgId"))
+        try:
+          bridx = self.daughtersPdgId.index(signFactor*getattr(part,"pdgId"))
+        except ValueError:
+          reutrn False
+
         for br in self.branches:
            if br != "charge":
              self.out.fillBranch("%s_%s"%(self.outputDaughterColls[bridx],br),getattr(part,br) )
