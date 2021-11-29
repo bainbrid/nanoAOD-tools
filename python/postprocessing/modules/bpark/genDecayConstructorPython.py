@@ -172,7 +172,7 @@ class genDecayConstructorPython(Module):
         try:
           bridx = self.daughtersPdgId.index(signFactor*getattr(part,"pdgId"))
         except ValueError:
-          reutrn False
+          return False
 
         for br in self.branches:
            if br != "charge":
